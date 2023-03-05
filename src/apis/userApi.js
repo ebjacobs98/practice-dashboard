@@ -4,7 +4,7 @@ import axios from "axios";
 export const getUsers = async () => {
   try {
     const response = await axios.get(
-      process.env.PROD_ENDPOINT + "/testAPI" || "http://localhost:9000/testAPI"
+      "https://practice-api-u64r.onrender.com/testAPI"
     );
     return response.data;
   } catch (error) {
