@@ -9,11 +9,9 @@ const RegisterButton = () => {
   };
 
   return (
-    <div>
-      <Button variant="contained" onClick={register}>
-        Register
-      </Button>
-    </div>
+    <Button variant="contained" onClick={register}>
+      Register
+    </Button>
   );
 };
 

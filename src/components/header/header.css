@@ -1,0 +1,25 @@
+.header {
+    margin: 8px;
+    margin-bottom: 16px;
+    display: flex;
+}
+
+.rightSide {
+    justify-content: right;
+    display: flex;
+    width: 50%;
+}
+
+.leftSide {
+    justify-content: left;
+    display: flex;
+    width: 50%;
+
+}
+
+.homeLink {
+    background-color: #0971f1;
+    padding: 8px;
+    text-decoration:none;
+    color: white;
+}
