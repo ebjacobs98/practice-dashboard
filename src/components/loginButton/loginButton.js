@@ -9,11 +9,15 @@ const LoginButton = () => {
   };
 
   return (
-    <div>
-      <Button variant="contained" onClick={login}>
-        Login
-      </Button>
-    </div>
+    <Button
+      sx={{
+        marginRight: "8px",
+      }}
+      variant="contained"
+      onClick={login}
+    >
+      Login
+    </Button>
   );
 };
 
