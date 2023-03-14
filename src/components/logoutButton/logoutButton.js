@@ -8,7 +8,7 @@ const LogoutButton = ({ login }) => {
   const logOut = () => {
     localStorage.clear();
     login(false);
-    navigate(0);
+    navigate("/");
   };
 
   return (
