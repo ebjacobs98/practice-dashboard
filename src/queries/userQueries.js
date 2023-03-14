@@ -1,5 +1,11 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { getUsers, login, register, getCurrentUser } from "../apis/userApi";
+import {
+  getUsers,
+  login,
+  register,
+  getCurrentUser,
+  setTopicMetrics,
+} from "../apis/userApi";
 
 export const useUsers = () => {
   return useQuery(["getUsers"], () => getUsers());
@@ -15,4 +21,10 @@ export const useRegister = () => {
 
 export const useCurrentUser = () => {
   return useQuery(["getCurrentUser"], () => getCurrentUser());
+};
+
+export const useTopicMetrics = () => {
+  return useMutation(["setTopicMetrics"], (payload) =>
+    setTopicMetrics(payload)
+  );
 };

@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import { TopicTitles } from "../../constants/constants";
 import Header from "../../components/header/header";
 import { useCurrentUser } from "../../queries/userQueries";
+import ProblemDialog from "../../components/problemDialog/problem-dialog";
 
 const Topic = ({ type }) => {
   const { data: user, isLoading } = useCurrentUser();
@@ -21,18 +21,6 @@ const Topic = ({ type }) => {
           }}
         >
           {TopicTitles[type] + " is Loading"}
-          <Button
-            sx={{
-              backgroundColor: "white",
-              color: "black",
-              "&:hover": {
-                backgroundColor: "white",
-                opacity: 0.9,
-              },
-            }}
-          >
-            Start Round
-          </Button>
         </Box>
       </>
     );
@@ -54,18 +42,7 @@ const Topic = ({ type }) => {
             {"Total Questions Answered: " + user.topics[type].questionsAnswered}
           </Box>
           <Box>{TopicTitles[type] + " for " + user.name}</Box>
-          <Button
-            sx={{
-              backgroundColor: "white",
-              color: "black",
-              "&:hover": {
-                backgroundColor: "white",
-                opacity: 0.9,
-              },
-            }}
-          >
-            Start Round
-          </Button>
+          <ProblemDialog type={type} />
         </Box>
       </>
     );
@@ -82,18 +59,7 @@ const Topic = ({ type }) => {
         }}
       >
         <Box sx={{ display: "block" }}>{TopicTitles[type]}</Box>
-        <Button
-          sx={{
-            backgroundColor: "white",
-            color: "black",
-            "&:hover": {
-              backgroundColor: "white",
-              opacity: 0.9,
-            },
-          }}
-        >
-          Start Round
-        </Button>
+        <ProblemDialog type={type} />
       </Box>
     </>
   );
