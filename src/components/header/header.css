@@ -17,9 +17,10 @@
 
 }
 
-.homeLink {
+.headerLink {
     background-color: #0971f1;
     padding: 8px;
+    margin-right: 8px;
     text-decoration:none;
     color: white;
 }

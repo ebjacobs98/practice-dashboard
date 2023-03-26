@@ -13,9 +13,14 @@ const Header = () => {
   return (
     <div className="header">
       <span className="leftSide">
-        <Link className="homeLink" to="/">
+        <Link className="headerLink" to="/">
           Home
         </Link>
+        {isLoggedIn && (
+          <Link className="headerLink" to="/classes">
+            Class Management
+          </Link>
+        )}
       </span>
       {!isLoggedIn && (
         <span className="rightSide">
