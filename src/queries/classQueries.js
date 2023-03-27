@@ -12,8 +12,8 @@ export const useClasses = () => {
   return useQuery(["getClasses"], () => getClasses());
 };
 
-export const useClass = () => {
-  return useQuery(["getClass"], (payload) => getClass(payload));
+export const useClass = (payload) => {
+  return useQuery(["getClass"], () => getClass(payload));
 };
 
 export const useCreateClass = () => {
