@@ -33,7 +33,6 @@ export const createClass = async (payload) => {
 };
 
 export const deleteClass = async (payload) => {
-  console.log("deleting");
   try {
     const response = await axios.delete(endpoint + "classes", {
       data: payload,
@@ -52,7 +51,7 @@ export const getClass = async (payload) => {
     if (!localStorage.getItem("token")) {
       return "Not Authorized";
     }
-    const response = await axios.get(endpoint + "classes/class", payload, {
+    const response = await axios.post(endpoint + "classes/class", payload, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -69,7 +68,7 @@ export const updatePendingStudent = async (payload) => {
       return "Not Authorized";
     }
     const response = await axios.patch(
-      endpoint + "classes/confirmedStudent",
+      endpoint + "classes/pendingStudent",
       payload,
       {
         headers: {
@@ -89,7 +88,7 @@ export const updateConfirmedStudent = async (payload) => {
       return "Not Authorized";
     }
     const response = await axios.patch(
-      endpoint + "classes/pendingStudent",
+      endpoint + "classes/confirmedStudent",
       payload,
       {
         headers: {

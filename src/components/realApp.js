@@ -8,6 +8,7 @@ import GetUsersBox from "../pages/getUsersBox";
 import Register from "../pages/register/register";
 import Topic from "../pages/topic/topic";
 import Classes from "../pages/classes/classes";
+import TeacherClass from "../pages/teacherClass/teacherClass";
 
 const RealApp = () => {
   return (
@@ -20,6 +21,18 @@ const RealApp = () => {
         <Route key={"classes"} path="classes" element={<Classes />} />
         {TopicsArray.map((entry) => (
           <Route key={entry} path={entry} element={<Topic type={entry} />} />
+        ))}
+        <Route
+          key={"teacherCourse"}
+          path="teacher/class/:classId"
+          element={<TeacherClass />}
+        />
+        {TopicsArray.map((entry) => (
+          <Route
+            key={"teacherCourseTopic"}
+            path={`teacher/class/:classId/${entry}`}
+            element={<Topic type={entry} />}
+          />
         ))}
       </Routes>
     </div>
