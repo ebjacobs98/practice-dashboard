@@ -8,6 +8,9 @@ const endpoint = dev
 
 export const getClasses = async () => {
   try {
+    if (!localStorage.getItem("token")) {
+      return "Not Authorized";
+    }
     const response = await axios.get(endpoint + "classes", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -21,6 +24,9 @@ export const getClasses = async () => {
 
 export const createClass = async (payload) => {
   try {
+    if (!localStorage.getItem("token")) {
+      return "Not Authorized";
+    }
     const response = await axios.post(endpoint + "classes", payload, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -34,6 +40,9 @@ export const createClass = async (payload) => {
 
 export const deleteClass = async (payload) => {
   try {
+    if (!localStorage.getItem("token")) {
+      return "Not Authorized";
+    }
     const response = await axios.delete(endpoint + "classes", {
       data: payload,
       headers: {

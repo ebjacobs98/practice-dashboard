@@ -9,6 +9,8 @@ import Register from "../pages/register/register";
 import Topic from "../pages/topic/topic";
 import Classes from "../pages/classes/classes";
 import TeacherClass from "../pages/teacherClass/teacherClass";
+import TeacherStudent from "../pages/teacherStudent/teacherStudent";
+import TeacherTopic from "../pages/teacherTopic/teacherTopic";
 
 const RealApp = () => {
   return (
@@ -27,11 +29,16 @@ const RealApp = () => {
           path="teacher/class/:classId"
           element={<TeacherClass />}
         />
+        <Route
+          key={"teacherCourse"}
+          path="teacher/class/:classId/student/:studentId"
+          element={<TeacherStudent />}
+        />
         {TopicsArray.map((entry) => (
           <Route
             key={"teacherCourseTopic"}
             path={`teacher/class/:classId/${entry}`}
-            element={<Topic type={entry} />}
+            element={<TeacherTopic topic={entry} />}
           />
         ))}
       </Routes>

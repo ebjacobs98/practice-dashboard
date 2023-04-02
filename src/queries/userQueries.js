@@ -7,8 +7,10 @@ import {
   setTopicMetrics,
 } from "../apis/userApi";
 
-export const useUsers = () => {
-  return useQuery(["getUsers"], () => getUsers());
+export const useUsers = (payload) => {
+  return useQuery(["getUsers", payload.type, payload.userIds], () =>
+    getUsers(payload)
+  );
 };
 
 export const useLogin = () => {

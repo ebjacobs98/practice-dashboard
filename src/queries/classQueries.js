@@ -13,7 +13,7 @@ export const useClasses = () => {
 };
 
 export const useClass = (payload) => {
-  return useQuery(["getClass"], () => getClass(payload));
+  return useQuery(["getClass", payload], () => getClass(payload));
 };
 
 export const useCreateClass = () => {
