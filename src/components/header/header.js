@@ -17,9 +17,14 @@ const Header = () => {
           Home
         </Link>
         {isLoggedIn && (
-          <Link className="headerLink" to="/classes">
-            Class Management
-          </Link>
+          <>
+            <Link className="headerLink" to="/classes">
+              Class Management
+            </Link>
+            <Link className="headerLink" to="/achievements">
+              Achievements
+            </Link>
+          </>
         )}
       </span>
       {!isLoggedIn && (
