@@ -11,6 +11,7 @@ import Classes from "../pages/classes/classes";
 import TeacherClass from "../pages/teacherClass/teacherClass";
 import TeacherStudent from "../pages/teacherStudent/teacherStudent";
 import TeacherTopic from "../pages/teacherTopic/teacherTopic";
+import Achievements from "../pages/achievements/achievements";
 
 const RealApp = () => {
   return (
@@ -21,6 +22,11 @@ const RealApp = () => {
         <Route key={"register"} path="register" element={<Register />} />
         <Route key={"users"} path="users" element={<GetUsersBox />} />
         <Route key={"classes"} path="classes" element={<Classes />} />
+        <Route
+          key={"achievements"}
+          path="achievements"
+          element={<Achievements />}
+        />
         {TopicsArray.map((entry) => (
           <Route key={entry} path={entry} element={<Topic type={entry} />} />
         ))}
