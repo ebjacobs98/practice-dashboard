@@ -6,9 +6,16 @@ const endpoint = dev
   ? "http://localhost:9000/"
   : "https://practice-api-u64r.onrender.com/";
 
-export const getUsers = async () => {
+export const getUsers = async (payload) => {
   try {
-    const response = await axios.get(endpoint + "users");
+    if (!localStorage.getItem("token")) {
+      return "Not Authorized";
+    }
+    const response = await axios.post(endpoint + "users", payload, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     return response.data;
   } catch (error) {
     return error?.response?.data?.message;

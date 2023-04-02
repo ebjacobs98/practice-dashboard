@@ -37,7 +37,7 @@ const Topic = ({ type }) => {
             backgroundColor: "primary.dark",
           }}
         >
-          <Box>{"High Score: " + user.topics[type].fastestTime}</Box>
+          <Box>{`High Score: ${user.topics[type].fastestTime / 1000}s`}</Box>
           <Box>
             {"Total Questions Answered: " + user.topics[type].questionsAnswered}
           </Box>
