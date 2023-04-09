@@ -76,7 +76,7 @@ const Topic = ({ type }) => {
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              padding: "16px",
+              padding: "2.5%",
             }}
           >
             <Box
@@ -99,8 +99,21 @@ const Topic = ({ type }) => {
           backgroundColor: "white",
         }}
       >
-        <Box sx={{ display: "block" }}>{TopicTitles[type]}</Box>
-        <ProblemDialog type={type} />
+        <Box
+          sx={{
+            textAlign: "center",
+            width: "96%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            padding: "2%",
+          }}
+        >
+          <Box
+            sx={{ marginBottom: "16px", fontSize: "24px" }}
+          >{`Subject: ${TopicTitles[type]}`}</Box>
+          <ProblemDialog type={type} />
+        </Box>
       </Box>
     </>
   );
