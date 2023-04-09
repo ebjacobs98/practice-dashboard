@@ -12,32 +12,28 @@ import Paper from "@mui/material/Paper";
 import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import LandscapeIcon from "@mui/icons-material/Landscape";
 import Tooltip from "@mui/material/Tooltip";
-import { TopicTitles, TopicsArray } from "../../constants/constants";
-
-const BRONZE_SUCCESS = "#9d5400";
-const BRONZE_FAIL = "#9d540049";
-
-const SILVER_SUCCESS = "#bebebe";
-const SILVER_FAIL = "#bebebe49";
-
-const GOLD_SUCCESS = "#fff700";
-const GOLD_FAIL = "#fff70049";
-
-const goldTime = 25000;
-const silverTime = 50000;
-const bronzeTime = 100000;
-
-const goldLength = 100;
-const silverLength = 60;
-const bronzeLength = 30;
-
-const bronzeSpeedMessage = `Time Requirement: Less than ${bronzeTime / 1000}s`;
-const silverSpeedMessage = `Time Requirement: Less than ${silverTime / 1000}s`;
-const goldSpeedMessage = `Time Requirement: Less than ${goldTime / 1000}s`;
-
-const bronzeLengthMessage = `Question Requirement: ${bronzeLength} Questions Answered`;
-const silverLengthMessage = `Question Requirement: ${silverLength} Questions Answered`;
-const goldLengthMessage = `Question Requirement: ${goldLength} Questions Answered`;
+import {
+  TopicTitles,
+  TopicsArray,
+  BRONZE_SUCCESS,
+  BRONZE_FAIL,
+  SILVER_SUCCESS,
+  SILVER_FAIL,
+  GOLD_SUCCESS,
+  GOLD_FAIL,
+  goldTime,
+  silverTime,
+  bronzeTime,
+  goldLength,
+  silverLength,
+  bronzeLength,
+  bronzeSpeedMessage,
+  silverSpeedMessage,
+  goldSpeedMessage,
+  bronzeLengthMessage,
+  silverLengthMessage,
+  goldLengthMessage,
+} from "../../constants/constants";
 
 const BadgeTable = () => {
   const { data, isLoading } = useCurrentUser();

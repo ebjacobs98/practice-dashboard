@@ -11,6 +11,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Timer from "../timer/timer";
 import getRandomQuestion from "../../questionGeneration/question-generation";
 import { useTopicMetrics } from "../../queries/userQueries";
+import { COLORS } from "../../constants/constants";
 
 const ProblemDialog = ({ type }) => {
   const navigate = useNavigate();
@@ -90,10 +91,11 @@ const ProblemDialog = ({ type }) => {
     <>
       <Button
         sx={{
-          backgroundColor: "white",
-          color: "black",
+          fontSize: "24px",
+          backgroundColor: COLORS.MEDIUM_BLUE,
+          color: "white",
           "&:hover": {
-            backgroundColor: "white",
+            backgroundColor: COLORS.MEDIUM_BLUE,
             opacity: 0.9,
           },
         }}
@@ -136,8 +138,16 @@ const ProblemDialog = ({ type }) => {
           )}
         </DialogContent>
         <DialogActions>
-          {!areQuestionsDone && <Button onClick={handleEnter}>Enter</Button>}
-          <Button onClick={handleClose} disabled={isLoading}>
+          {!areQuestionsDone && (
+            <Button sx={{ color: COLORS.MEDIUM_BLUE }} onClick={handleEnter}>
+              Enter
+            </Button>
+          )}
+          <Button
+            sx={{ color: COLORS.MEDIUM_BLUE }}
+            onClick={handleClose}
+            disabled={isLoading}
+          >
             {giveUpText}
           </Button>
         </DialogActions>

@@ -7,6 +7,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useCreateClass } from "../../queries/classQueries";
+import { COLORS } from "../../constants/constants";
 
 const AddClassDialog = ({ open, setOpen, refetch }) => {
   const [className, setClassName] = useState("");
@@ -70,8 +71,14 @@ const AddClassDialog = ({ open, setOpen, refetch }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleEnter}>Add Class</Button>
-        <Button onClick={handleClose} disabled={isLoading}>
+        <Button sx={{ color: COLORS.MEDIUM_BLUE }} onClick={handleEnter}>
+          Add Class
+        </Button>
+        <Button
+          sx={{ color: COLORS.MEDIUM_BLUE }}
+          onClick={handleClose}
+          disabled={isLoading}
+        >
           Cancel
         </Button>
       </DialogActions>

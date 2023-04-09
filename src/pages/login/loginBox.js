@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useLogin } from "../../queries/userQueries";
 import Header from "../../components/header/header";
+import { COLORS } from "../../constants/constants";
 
 const LoginBox = () => {
   const navigate = useNavigate();
@@ -62,7 +63,18 @@ const LoginBox = () => {
           />
         </div>
         <div>
-          <Button variant="contained" onClick={submitForm} disabled={isLoading}>
+          <Button
+            sx={{
+              backgroundColor: COLORS.MEDIUM_BLUE,
+              "&:hover": {
+                backgroundColor: COLORS.MEDIUM_BLUE,
+                opacity: 0.9,
+              },
+            }}
+            variant="contained"
+            onClick={submitForm}
+            disabled={isLoading}
+          >
             Submit
           </Button>
         </div>

@@ -10,6 +10,7 @@ import {
 } from "../../queries/classQueries";
 import Box from "@mui/system/Box";
 import { Button } from "@mui/material";
+import { COLORS } from "../../constants/constants";
 
 const PendingStudentLink = ({ name, classId, studentId, refetch }) => {
   const {
@@ -76,7 +77,11 @@ const PendingStudentLink = ({ name, classId, studentId, refetch }) => {
 
   return (
     <Grid item xs={12}>
-      <Link className="topicLink" to="">
+      <Link
+        style={{ backgroundColor: COLORS.MEDIUM_BLUE }}
+        className="topicLink"
+        to=""
+      >
         <div className="container">
           <Box sx={{ padding: "8px" }} className="leftSideClassPageLink">
             {name}

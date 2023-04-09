@@ -7,6 +7,7 @@ import "../classPageLink/classPageLink.css";
 import { useUpdateConfirmedStudent } from "../../queries/classQueries";
 import Box from "@mui/system/Box";
 import { Button } from "@mui/material";
+import { COLORS } from "../../constants/constants";
 
 const CurrentStudentLink = ({ name, classId, studentId, refetch }) => {
   const {
@@ -32,7 +33,11 @@ const CurrentStudentLink = ({ name, classId, studentId, refetch }) => {
 
   return (
     <Grid item xs={12}>
-      <Link className="topicLink" to={`student/${studentId}`}>
+      <Link
+        style={{ backgroundColor: COLORS.MEDIUM_BLUE }}
+        className="topicLink"
+        to={`student/${studentId}`}
+      >
         <div className="container">
           <Box sx={{ padding: "8px" }} className="leftSideClassPageLink">
             {name}

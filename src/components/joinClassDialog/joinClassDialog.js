@@ -8,6 +8,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useUpdatePendingStudent } from "../../queries/classQueries";
 import { useCurrentUser } from "../../queries/userQueries";
+import { COLORS } from "../../constants/constants";
 
 const JoinClassDialog = ({ open, setOpen, refetch }) => {
   const { data: user, isLoading: isUserLoading } = useCurrentUser();
@@ -76,8 +77,14 @@ const JoinClassDialog = ({ open, setOpen, refetch }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleEnter}>Join Class</Button>
-        <Button onClick={handleClose} disabled={isLoading}>
+        <Button sx={{ color: COLORS.MEDIUM_BLUE }} onClick={handleEnter}>
+          Join Class
+        </Button>
+        <Button
+          sx={{ color: COLORS.MEDIUM_BLUE }}
+          onClick={handleClose}
+          disabled={isLoading}
+        >
           Cancel
         </Button>
       </DialogActions>
