@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const dev = false;
+const dev = true;
 
 const endpoint = dev
   ? "http://localhost:9000/"

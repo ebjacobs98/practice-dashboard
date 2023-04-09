@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import LogoutButton from "../logoutButton/logoutButton";
 import LoginButton from "../loginButton/loginButton";
 import RegisterButton from "../registerButton/registerButton";
+import Box from "@mui/material/Box";
 import "./header.css";
 import { Link } from "react-router-dom";
+import { COLORS } from "../../constants/constants";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -11,17 +13,36 @@ const Header = () => {
   );
 
   return (
-    <div className="header">
+    <Box
+      sx={{
+        backgroundColor: COLORS.NAVY_BLUE,
+        padding: "8px",
+        marginBottom: "16px",
+        display: "flex",
+      }}
+    >
       <span className="leftSide">
-        <Link className="headerLink" to="/">
+        <Link
+          style={{ backgroundColor: COLORS.MEDIUM_BLUE }}
+          className="headerLink"
+          to="/"
+        >
           Home
         </Link>
         {isLoggedIn && (
           <>
-            <Link className="headerLink" to="/classes">
+            <Link
+              style={{ backgroundColor: COLORS.MEDIUM_BLUE }}
+              className="headerLink"
+              to="/classes"
+            >
               Class Management
             </Link>
-            <Link className="headerLink" to="/achievements">
+            <Link
+              style={{ backgroundColor: COLORS.MEDIUM_BLUE }}
+              className="headerLink"
+              to="/achievements"
+            >
               Achievements
             </Link>
           </>
@@ -37,7 +58,7 @@ const Header = () => {
           <LogoutButton login={setIsLoggedIn} />
         </span>
       )}
-    </div>
+    </Box>
   );
 };
 

@@ -2,6 +2,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import {
   updatePendingStudent,
   updateConfirmedStudent,
+  updateAssignedTopics,
   createClass,
   deleteClass,
   getClasses,
@@ -33,5 +34,13 @@ export const useUpdatePendingStudent = () => {
 export const useUpdateConfirmedStudent = () => {
   return useMutation(["updateConfirmedStudent"], (payload) =>
     updateConfirmedStudent(payload)
+  );
+};
+
+export const useUpdateAssignedTopics = (initialPayload) => {
+  return useMutation(
+    ["updateAssignedTopics", initialPayload],
+    (actionPayload) =>
+      updateAssignedTopics({ ...initialPayload, ...actionPayload })
   );
 };

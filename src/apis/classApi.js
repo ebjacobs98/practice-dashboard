@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const dev = false;
+const dev = true;
 
 const endpoint = dev
   ? "http://localhost:9000/"
@@ -98,6 +98,26 @@ export const updateConfirmedStudent = async (payload) => {
     }
     const response = await axios.patch(
       endpoint + "classes/confirmedStudent",
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    return error?.response?.data?.message;
+  }
+};
+
+export const updateAssignedTopics = async (payload) => {
+  try {
+    if (!localStorage.getItem("token")) {
+      return "Not Authorized";
+    }
+    const response = await axios.patch(
+      endpoint + "classes/assignedTopics",
       payload,
       {
         headers: {

@@ -11,6 +11,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { TopicTitles } from "../../constants/constants";
+import MetricsGraph from "../metricsGraph/metricsGraph";
 
 const StudentData = ({ studentId }) => {
   const { data, isLoading } = useUsers({ userIds: [studentId] });
@@ -21,6 +22,7 @@ const StudentData = ({ studentId }) => {
       name: entry[0],
       ...entry[1],
     }));
+
     return (
       <>
         <Box
@@ -45,7 +47,9 @@ const StudentData = ({ studentId }) => {
                 <TableCell>Topic</TableCell>
                 <TableCell align="right">Questions Answered</TableCell>
                 <TableCell align="right">Fastest Time</TableCell>
-                <TableCell align="right">Progression</TableCell>
+                <TableCell align="right" width={"40%"}>
+                  Progression
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -59,9 +63,11 @@ const StudentData = ({ studentId }) => {
                     topic.fastestTime / 1000
                   }s`}</TableCell>
                   <TableCell align="right">
-                    <div>------------------------</div>
-                    <div>Enter Graph Here</div>
-                    <div>------------------------</div>
+                    {topic.metrics.length === 0 ? (
+                      "NA"
+                    ) : (
+                      <MetricsGraph metrics={topic.metrics} />
+                    )}
                   </TableCell>
                 </TableRow>
               ))}

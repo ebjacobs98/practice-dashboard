@@ -9,6 +9,7 @@ import { useDeleteClass } from "../../queries/classQueries";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import IconButton from "@mui/material/IconButton";
+import { COLORS } from "../../constants/constants";
 
 const TeacherClassPageLink = ({ name, classId, refetch, numStudents }) => {
   const { isLoading, data, mutateAsync, reset } = useDeleteClass();
@@ -34,7 +35,11 @@ const TeacherClassPageLink = ({ name, classId, refetch, numStudents }) => {
 
   return (
     <Grid item xs={6}>
-      <Link className="topicLink" to={`/teacher/class/${classId}`}>
+      <Link
+        style={{ backgroundColor: COLORS.MEDIUM_BLUE }}
+        className="topicLink"
+        to={`/teacher/class/${classId}`}
+      >
         <div className="container">
           <div className="leftSideClassPageLink">
             <Box sx={{ marginBottom: "8px" }}>{name}</Box>

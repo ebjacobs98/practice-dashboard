@@ -8,6 +8,7 @@ import { useClasses } from "../../queries/classQueries";
 import TeacherClassPageLink from "../classPageLink/teacherClassPageLink";
 import PendingStudentClassPageLink from "../classPageLink/pendingStudentClassPageLink";
 import ConfirmedStudentClassPageLink from "../classPageLink/confirmedStudentClassPageLink";
+import { COLORS } from "../../constants/constants";
 
 const ClassPageLayout = () => {
   const { data, isLoading, refetch } = useClasses();
@@ -24,7 +25,14 @@ const ClassPageLayout = () => {
         <Grid sx={{ padding: "8px" }} container spacing={2}>
           <Grid item xs={6}>
             <Button
-              sx={{ width: "100%" }}
+              sx={{
+                width: "100%",
+                backgroundColor: COLORS.MEDIUM_BLUE,
+                "&:hover": {
+                  backgroundColor: COLORS.MEDIUM_BLUE,
+                  opacity: 0.9,
+                },
+              }}
               variant="contained"
               onClick={() => {
                 setIsAddDialogOpen(true);
@@ -35,7 +43,14 @@ const ClassPageLayout = () => {
           </Grid>
           <Grid item xs={6}>
             <Button
-              sx={{ width: "100%" }}
+              sx={{
+                width: "100%",
+                backgroundColor: COLORS.MEDIUM_BLUE,
+                "&:hover": {
+                  backgroundColor: COLORS.MEDIUM_BLUE,
+                  opacity: 0.9,
+                },
+              }}
               variant="contained"
               onClick={() => {
                 setIsJoinDialogOpen(true);

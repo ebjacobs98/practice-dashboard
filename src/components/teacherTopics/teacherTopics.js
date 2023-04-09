@@ -1,19 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
-import { TopicsArray, TopicTitles } from "../../constants/constants";
+import { TopicsArray } from "../../constants/constants";
 import "../topics/topics.css";
+import TeacherTopicLink from "../teacherTopicLink/teacherTopicLink";
 
 const TeacherTopics = ({ classId }) => {
   return (
     <Grid sx={{ padding: "8px" }} container spacing={2}>
       {TopicsArray.map((entry) => (
-        <Grid item xs={3}>
-          <Link className="topicLink" to={entry}>
-            {TopicTitles[entry]}
-          </Link>
-        </Grid>
+        <TeacherTopicLink classId={classId} topic={entry} />
       ))}
     </Grid>
   );

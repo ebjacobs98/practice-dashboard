@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
 import "../classPageLayout/classPageLayout.css";
@@ -9,6 +8,7 @@ import { useCurrentUser } from "../../queries/userQueries";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/system/Box";
+import { COLORS } from "../../constants/constants";
 
 const ConfirmedStudentClassPageLink = ({ name, classId, refetch }) => {
   const { data: user, isLoading: isUserLoading } = useCurrentUser();
@@ -29,7 +29,18 @@ const ConfirmedStudentClassPageLink = ({ name, classId, refetch }) => {
 
   return (
     <Grid item xs={6}>
-      <Link className="topicLink" to="/classes">
+      <Box
+        style={{
+          backgroundColor: COLORS.MEDIUM_BLUE,
+          minHeight: "40px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          textDecoration: "none",
+          color: "white",
+          width: "100%",
+        }}
+      >
         <div className="container">
           <Box sx={{ padding: "8px" }} className="leftSideClassPageLink">
             {name}
@@ -40,7 +51,7 @@ const ConfirmedStudentClassPageLink = ({ name, classId, refetch }) => {
             </IconButton>
           </span>
         </div>
-      </Link>
+      </Box>
     </Grid>
   );
 };
