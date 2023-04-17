@@ -21,9 +21,11 @@ const ProblemDialog = ({ type }) => {
   const [isRefSet, setIsRefSet] = useState(false);
   const [questionNumber, setQuestionNumber] = useState(1);
   const [time, setTime] = useState(0);
-  const [response, setResponse] = useState();
+  const [response, setResponse] = useState("");
+  const [response2, setResponse2] = useState("");
   const [qAndA, setQAndA] = useState({ question: null, answer: null });
   const [answerError, setAnswerError] = useState(false);
+  const [answerError2, setAnswerError2] = useState(false);
 
   useEffect(() => {
     if (isRefSet) {
@@ -39,7 +41,9 @@ const ProblemDialog = ({ type }) => {
     setIsRefSet(false);
 
     setResponse("");
+    setResponse2("");
     setAnswerError(false);
+    setAnswerError2(false);
     setTime(0);
     if (questionNumber === 4) {
       setQuestionNumber(1);
@@ -49,17 +53,75 @@ const ProblemDialog = ({ type }) => {
   };
 
   const handleEnter = () => {
-    if (parseFloat(response) === qAndA.answer) {
-      if (questionNumber === 3) {
-        mutateAsync({ type: type, score: time });
+    if (qAndA.answers.length === 1) {
+      if (
+        parseFloat(response) >=
+          qAndA.answers[0].answer - qAndA.answers[0].error &&
+        parseFloat(response) <= qAndA.answers[0].answer + qAndA.answers[0].error
+      ) {
+        if (questionNumber === 3) {
+          mutateAsync({ type: type, score: time });
+        }
+        setAnswerError(false);
+        setResponse("");
+        setQAndA(getRandomQuestion({ type }));
+        setQuestionNumber(questionNumber + 1);
+        answerField.current.focus();
+      } else {
+        setAnswerError(true);
       }
-      setAnswerError(false);
-      setResponse("");
-      setQAndA(getRandomQuestion({ type }));
-      setQuestionNumber(questionNumber + 1);
-      answerField.current.focus();
-    } else {
-      setAnswerError(true);
+    }
+    if (qAndA.answers.length === 2) {
+      if (
+        (response === qAndA.answers[0].answer ||
+          (parseFloat(response) >=
+            qAndA.answers[0].answer - qAndA.answers[0].error &&
+            parseFloat(response) <=
+              qAndA.answers[0].answer + qAndA.answers[0].error)) &&
+        (response2 === qAndA.answers[1].answer ||
+          (parseFloat(response2) >=
+            qAndA.answers[1].answer - qAndA.answers[1].error &&
+            parseFloat(response2) <=
+              qAndA.answers[1].answer + qAndA.answers[1].error))
+      ) {
+        if (questionNumber === 3) {
+          mutateAsync({ type: type, score: time });
+        }
+        setAnswerError(false);
+        setAnswerError2(false);
+        setResponse("");
+        setResponse2("");
+        setQAndA(getRandomQuestion({ type }));
+        setQuestionNumber(questionNumber + 1);
+        answerField.current.focus();
+      } else {
+        if (
+          !(
+            response === qAndA.answers[0].answer ||
+            (parseFloat(response) >=
+              qAndA.answers[0].answer - qAndA.answers[0].error &&
+              parseFloat(response) <=
+                qAndA.answers[0].answer + qAndA.answers[0].error)
+          )
+        ) {
+          setAnswerError(true);
+        } else {
+          setAnswerError(false);
+        }
+        if (
+          !(
+            response2 === qAndA.answers[1].answer ||
+            (parseFloat(response2) >=
+              qAndA.answers[1].answer - qAndA.answers[1].error &&
+              parseFloat(response2) <=
+                qAndA.answers[1].answer + qAndA.answers[1].error)
+          )
+        ) {
+          setAnswerError2(true);
+        } else {
+          setAnswerError2(false);
+        }
+      }
     }
   };
 
@@ -70,6 +132,10 @@ const ProblemDialog = ({ type }) => {
 
   const onAnswerChange = (e) => {
     setResponse(e.target.value);
+  };
+
+  const onAnswerChange2 = (e) => {
+    setResponse2(e.target.value);
   };
 
   const handleEnterKey = (e) => {
@@ -83,7 +149,12 @@ const ProblemDialog = ({ type }) => {
   const dialogTitle = areQuestionsDone
     ? "Congratulations"
     : "Question number " + questionNumber;
+
   const answerHelperText = answerError
+    ? "Sorry wrong answer, try again!"
+    : null;
+
+  const answerHelperText2 = answerError2
     ? "Sorry wrong answer, try again!"
     : null;
 
@@ -106,7 +177,13 @@ const ProblemDialog = ({ type }) => {
 
       <Dialog open={open}>
         <DialogTitle sx={{ textAlign: "center" }}>{dialogTitle}</DialogTitle>
-        <DialogContent>
+        <DialogContent
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
           <Timer
             isRunning={open && !areQuestionsDone}
             time={time}
@@ -121,19 +198,37 @@ const ProblemDialog = ({ type }) => {
                   {line}
                 </DialogContentText>
               ))}
-              <TextField
-                inputRef={answerField}
-                type="number"
-                id="answer"
-                value={response}
-                onChange={onAnswerChange}
-                onKeyDown={handleEnterKey}
-                error={answerError}
-                helperText={answerHelperText}
-                sx={{
-                  marginTop: "16px",
-                }}
-              />
+              {qAndA.answers.length >= 1 && (
+                <TextField
+                  inputRef={answerField}
+                  type="number"
+                  id="answer"
+                  value={response}
+                  onChange={onAnswerChange}
+                  onKeyDown={handleEnterKey}
+                  error={answerError}
+                  helperText={answerHelperText}
+                  label={qAndA.answers[0].answerLabel}
+                  sx={{
+                    marginTop: "16px",
+                  }}
+                />
+              )}
+              {qAndA.answers.length >= 2 && (
+                <TextField
+                  type="number"
+                  id="answer2"
+                  value={response2}
+                  onChange={onAnswerChange2}
+                  onKeyDown={handleEnterKey}
+                  error={answerError2}
+                  helperText={answerHelperText2}
+                  label={qAndA.answers[1].answerLabel}
+                  sx={{
+                    marginTop: "16px",
+                  }}
+                />
+              )}
             </>
           )}
         </DialogContent>

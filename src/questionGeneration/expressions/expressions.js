@@ -42,7 +42,10 @@ const getExpressionQuestion = () => {
     }
   }
 
-  return { question: expression, answer };
+  return {
+    question: expression,
+    answers: [{ answer, answerLabel: "Expression equals ", error: 0 }],
+  };
 };
 
 export default getExpressionQuestion;

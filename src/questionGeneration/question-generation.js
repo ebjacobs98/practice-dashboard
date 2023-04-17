@@ -1,9 +1,11 @@
 import getExpressionQuestion from "./expressions/expressions";
+import getLinearEquationQuestion from "./linearEquations/linearEquations";
+import getLinearInequalitiesQuestion from "./linearInequalities/linearInequalities";
 
 const questionsMap = {
   expressions: getExpressionQuestion,
-  linearEquations: () => {},
-  linearInequalities: () => {},
+  linearEquations: getLinearEquationQuestion,
+  linearInequalities: getLinearInequalitiesQuestion,
   idGraphs: () => {},
   linearGraphs: () => {},
   systems: () => {},
