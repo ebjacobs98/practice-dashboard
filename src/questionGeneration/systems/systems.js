@@ -2,9 +2,6 @@ const getSystemsQuestion = () => {
   const xAnswer = Math.floor(Math.random() * 19) - 9;
   const yAnswer = Math.floor(Math.random() * 19) - 9;
 
-  console.log(xAnswer);
-  console.log(yAnswer);
-
   let isXLeft1 = Math.random() >= 0.5;
   const isYLeft1 = Math.random() >= 0.5;
   const isNumLeft1 = Math.random() >= 0.5;
