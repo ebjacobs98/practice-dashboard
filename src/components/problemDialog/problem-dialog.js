@@ -23,9 +23,11 @@ const ProblemDialog = ({ type }) => {
   const [time, setTime] = useState(0);
   const [response, setResponse] = useState("");
   const [response2, setResponse2] = useState("");
+  const [response3, setResponse3] = useState("");
   const [qAndA, setQAndA] = useState({ question: null, answer: null });
   const [answerError, setAnswerError] = useState(false);
   const [answerError2, setAnswerError2] = useState(false);
+  const [answerError3, setAnswerError3] = useState(false);
 
   useEffect(() => {
     if (isRefSet) {
@@ -42,8 +44,10 @@ const ProblemDialog = ({ type }) => {
 
     setResponse("");
     setResponse2("");
+    setResponse3("");
     setAnswerError(false);
     setAnswerError2(false);
+    setAnswerError3(false);
     setTime(0);
     if (questionNumber === 4) {
       setQuestionNumber(1);
@@ -70,8 +74,7 @@ const ProblemDialog = ({ type }) => {
       } else {
         setAnswerError(true);
       }
-    }
-    if (qAndA.answers.length === 2) {
+    } else if (qAndA.answers.length === 2) {
       if (
         (response === qAndA.answers[0].answer ||
           (parseFloat(response) >=
@@ -122,6 +125,77 @@ const ProblemDialog = ({ type }) => {
           setAnswerError2(false);
         }
       }
+    } else if (qAndA.answers.length === 3) {
+      if (
+        (response === qAndA.answers[0].answer ||
+          (parseFloat(response) >=
+            qAndA.answers[0].answer - qAndA.answers[0].error &&
+            parseFloat(response) <=
+              qAndA.answers[0].answer + qAndA.answers[0].error)) &&
+        (response2 === qAndA.answers[1].answer ||
+          (parseFloat(response2) >=
+            qAndA.answers[1].answer - qAndA.answers[1].error &&
+            parseFloat(response2) <=
+              qAndA.answers[1].answer + qAndA.answers[1].error)) &&
+        (response3 === qAndA.answers[2].answer ||
+          (parseFloat(response3) >=
+            qAndA.answers[2].answer - qAndA.answers[2].error &&
+            parseFloat(response3) <=
+              qAndA.answers[2].answer + qAndA.answers[2].error))
+      ) {
+        if (questionNumber === 3) {
+          mutateAsync({ type: type, score: time });
+        }
+        setAnswerError(false);
+        setAnswerError2(false);
+        setAnswerError3(false);
+        setResponse("");
+        setResponse2("");
+        setResponse3("");
+        setQAndA(getRandomQuestion({ type }));
+        setQuestionNumber(questionNumber + 1);
+        answerField.current.focus();
+      } else {
+        if (
+          !(
+            response === qAndA.answers[0].answer ||
+            (parseFloat(response) >=
+              qAndA.answers[0].answer - qAndA.answers[0].error &&
+              parseFloat(response) <=
+                qAndA.answers[0].answer + qAndA.answers[0].error)
+          )
+        ) {
+          setAnswerError(true);
+        } else {
+          setAnswerError(false);
+        }
+        if (
+          !(
+            response2 === qAndA.answers[1].answer ||
+            (parseFloat(response2) >=
+              qAndA.answers[1].answer - qAndA.answers[1].error &&
+              parseFloat(response2) <=
+                qAndA.answers[1].answer + qAndA.answers[1].error)
+          )
+        ) {
+          setAnswerError2(true);
+        } else {
+          setAnswerError2(false);
+        }
+        if (
+          !(
+            response3 === qAndA.answers[2].answer ||
+            (parseFloat(response3) >=
+              qAndA.answers[2].answer - qAndA.answers[2].error &&
+              parseFloat(response3) <=
+                qAndA.answers[2].answer + qAndA.answers[2].error)
+          )
+        ) {
+          setAnswerError3(true);
+        } else {
+          setAnswerError3(false);
+        }
+      }
     }
   };
 
@@ -136,6 +210,10 @@ const ProblemDialog = ({ type }) => {
 
   const onAnswerChange2 = (e) => {
     setResponse2(e.target.value);
+  };
+
+  const onAnswerChange3 = (e) => {
+    setResponse3(e.target.value);
   };
 
   const handleEnterKey = (e) => {
@@ -158,6 +236,10 @@ const ProblemDialog = ({ type }) => {
     ? "Sorry wrong answer, try again!"
     : null;
 
+  const answerHelperText3 = answerError3
+    ? "Sorry wrong answer, try again!"
+    : null;
+
   return (
     <>
       <Button
@@ -175,7 +257,7 @@ const ProblemDialog = ({ type }) => {
         Start Round
       </Button>
 
-      <Dialog open={open}>
+      <Dialog open={open} maxWidth="md">
         <DialogTitle sx={{ textAlign: "center" }}>{dialogTitle}</DialogTitle>
         <DialogContent
           sx={{
@@ -224,6 +306,21 @@ const ProblemDialog = ({ type }) => {
                   error={answerError2}
                   helperText={answerHelperText2}
                   label={qAndA.answers[1].answerLabel}
+                  sx={{
+                    marginTop: "16px",
+                  }}
+                />
+              )}
+              {qAndA.answers.length >= 3 && (
+                <TextField
+                  type="number"
+                  id="answer3"
+                  value={response3}
+                  onChange={onAnswerChange3}
+                  onKeyDown={handleEnterKey}
+                  error={answerError3}
+                  helperText={answerHelperText3}
+                  label={qAndA.answers[2].answerLabel}
                   sx={{
                     marginTop: "16px",
                   }}
