@@ -38,7 +38,7 @@ export const TopicTitles = {
   exponential: "Simplify Exponential Expressions",
   factorPolynomial: "Factor Polynomials",
   quadratic: "Multiply Binomials (FOIL)",
-  probability: "Probabiltiy",
+  probability: "Probability",
   squareRoots: "Solve Square Root Equations",
   expressionReview: "Simplify Expression Review",
 };
