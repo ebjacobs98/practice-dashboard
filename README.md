@@ -1,3 +1,6 @@
+<!-- The following code was generated with create react app using the instructions from the following tutorial https://www.youtube.com/watch?v=CvCiNeLnZ00&ab_channel=DaveGray -->
+<!-- Any file not in the src/(apis, components, constants, pages, queries, and question generation) was automatically generated through create-react-app -->
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,4 +71,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
 # practice-dashboard

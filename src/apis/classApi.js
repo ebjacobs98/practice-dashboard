@@ -1,5 +1,10 @@
 import axios from "axios";
 
+// some of the api design here was inspired by the following tutorials
+// https://www.youtube.com/watch?v=CvCiNeLnZ00&ab_channel=DaveGray
+// https://www.youtube.com/watch?v=-0exw-9YJBo&ab_channel=TraversyMedia
+// https://www.youtube.com/watch?v=mvfsC66xqj0&t=3307s&ab_channel=TraversyMedia
+
 const dev = false;
 
 const endpoint = dev
