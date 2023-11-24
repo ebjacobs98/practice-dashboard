@@ -48,6 +48,11 @@ export const COLORS = {
   MEDIUM_BLUE: "#189AB4",
   NAVY_BLUE: "#05445E",
   TEAL_BLUE: "#75E6DA",
+  PURPLE: "#734B5E",
+  LIGHT_GREEN: "#7fc6a4",
+  GREY: "#F1EDEF",
+  DARK_GREEN: "#1f271b",
+  WHITE: "#FFFFFF",
 };
 
 export const BRONZE_SUCCESS = "#9d5400";
